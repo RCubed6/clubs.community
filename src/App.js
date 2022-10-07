@@ -6,13 +6,12 @@ import ChessClub from './index.js'
 
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 
-// Array for all clubs
-let clublist = [];
 
+// Initialize Array for all clubs
+let clublist = [];
 
 // // Add new club to array
 clublist.push(new Club('Team', 'Chess', 'Chess', '340', '3:15-4'), new Club('Art', 'Art Club', '', '1204', '3:15-4'));
-
 
 // // make function for returning the names for all clubs in the clubs list
 function getclubnames(array) {
