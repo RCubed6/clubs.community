@@ -5,7 +5,7 @@ const { google } = require('googleapis');
 const app = express()
 app.use(express.json())
 
-app.listen(3000, () => console.log("Server running on PORT 3000!"))
+app.listen(3001, () => console.log("Server running on PORT 3001!"))
 
 const authentication = async () => {
     const auth = new google.auth.GoogleAuth({
@@ -21,7 +21,7 @@ const authentication = async () => {
     })
     return { sheets }
 }
-const id = '1NQETrPPD77ffH3qY62ek5N2gKsXJ0BfpK_DBqsiuOik';
+const id = '1FTNCQPGhSERO_oQ8z8TT_UdTonAdbt4hOKaCDTROBcY';
 
 app.get('/', async (req, res) => {
     try {
@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
 
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: id,
-            range: "Sheet1",
+            range: "Sheet6",
         })
         res.send(response.data)
         } catch(e) {
