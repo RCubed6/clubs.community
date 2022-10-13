@@ -2,14 +2,29 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Necessary librararies
+
+axios, google-auth-library, googleapis. Run:
+
+### `npm install [library]`
+
+To install the packages.
+
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the front-end in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+Next navigate to the folder api, and run:
+
+### `npm start`
+
+Runs the back-end.\
+Both need to be running for the project to run correctly.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
