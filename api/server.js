@@ -25,6 +25,10 @@ const id = '1FTNCQPGhSERO_oQ8z8TT_UdTonAdbt4hOKaCDTROBcY';
 
 app.get('/', async (req, res) => {
     try {
+        res.set({
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        });
         const { sheets } = await authentication();
 
         const response = await sheets.spreadsheets.values.get({
