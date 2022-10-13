@@ -19,15 +19,15 @@ In the project directory, you can run:
 Runs the front-end in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
 Next navigate to the folder api, and run:
 
 ### `npm start`
 
-Runs the back-end. Open http://localhost:3000 to view it in your browser.\
+Runs the back-end. Open http://localhost:3001 to view it in your browser.\
 Both need to be running for the project to run correctly.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 
