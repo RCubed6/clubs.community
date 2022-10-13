@@ -34,6 +34,7 @@ console.log(listItems);
 // console.log(ChessClub.name);
 
 function App() {
+    //fetches club data from the backend, then prints to console
     React.useEffect(() => {
       axios.get("http://localhost:3001").then((response) => {
         console.log(response.data)
