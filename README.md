@@ -23,7 +23,7 @@ Next navigate to the folder api, and run:
 
 ### `npm start`
 
-Runs the back-end.\
+Runs the back-end. Open http://localhost:3000 to view it in your browser.\
 Both need to be running for the project to run correctly.
 
 The page will reload when you make changes.\
