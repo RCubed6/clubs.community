@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Club from './club.js';
 
+
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 
 

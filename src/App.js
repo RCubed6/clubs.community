@@ -2,7 +2,9 @@
 import './App.css';
 import Club from './club';
 import ChessClub from './index.js'
-
+import { useState, useEffect } from "react";
+import axios from "axios";
+import React from "react";
 
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 
@@ -32,6 +34,15 @@ console.log(listItems);
 // console.log(ChessClub.name);
 
 function App() {
+    React.useEffect(() => {
+      axios.get("http://localhost:3001").then((response) => {
+        console.log(response.data)
+      });
+    }, []);
+  
+  //    .then((response) => console.log(response.json()));
+  //  }, []);
+   
   return (
     <div className="App">
       <header className="App-header">
