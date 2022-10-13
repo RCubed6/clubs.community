@@ -35,7 +35,7 @@ console.log(listItems);
 // console.log(ChessClub.name);
 
 function App() {
-    React.useEffect(() => {
+    useEffect(() => {
       axios.get("http://localhost:3001").then((response) => {
         console.log(response.data)
       });
