@@ -2,6 +2,10 @@
 import './App.css';
 import Club from './club';
 import ChessClub from './index.js'
+import SearchBar from './searchbar';
+
+// import List from "./Components/List"
+
 
 
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
@@ -35,13 +39,13 @@ console.log(listItems);
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>List of clubs:</h1>
-        <ul>{listItems}</ul>
-        {/* <li>{getclubnames(clublist)}</li> */}
-        {/* <li>{ChessClub.get_name}</li> */}
+      <SearchBar/>
+      <div class="Button">
+        <button type="button">Register a club</button>
+      </div>
 
-      </header>
+      <h1>List of clubs:</h1>
+      <ul>{listItems}</ul>
     </div>
   );
 }

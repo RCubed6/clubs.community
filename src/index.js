@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Club from './club.js';
+import Main from './main';
+
 
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 

@@ -17,6 +17,7 @@ class Club extends Component {
     get get_name() {
         return this.name;
     }
+    
 }
 
 export default Club;
