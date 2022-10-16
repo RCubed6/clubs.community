@@ -3,6 +3,8 @@ import './App.css';
 import Club from './club';
 import ChessClub from './index.js'
 import SearchBar from './searchbar';
+import React, {Component} from "react";
+
 
 // import List from "./Components/List"
 
