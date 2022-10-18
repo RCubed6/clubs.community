@@ -1,8 +1,14 @@
 // import logo from './logo.svg';
 import './App.css';
 import Club from './club';
-import ChessClub from './index.js'
-import SearchBar from './searchbar';
+import ChessClub from './index.js';
+import SearchBar from './searchBar';
+import getPosts from './api/axios.js';
+import axios from 'axios'
+import { useState, useEffect} from 'react';
+import searchBar from './searchBar.js'
+import ListPage from './ListPage.js'
+
 
 // import List from "./Components/List"
 
@@ -37,15 +43,28 @@ console.log(listItems);
 // console.log(ChessClub.name);
 
 function App() {
+  const [posts, setPosts] = useState([])
+  const [searchResults, setSearchResults] = useState([])
+  
+  useEffect(() => {
+    getPosts().then(json => {
+      setPosts(json)
+      return json
+    }).then(json => {
+      setSearchResults(json)
+    })
+  }, [])
+
   return (
     <div className="App">
-      <SearchBar/>
-      <div class="Button">
+      <SearchBar posts={posts} setSearchResults={setSearchResults}/>
+      <ListPage searchResults={searchResults} />
+      {/* <div class="Button">
         <button type="button">Register a club</button>
       </div>
 
       <h1>List of clubs:</h1>
-      <ul>{listItems}</ul>
+      <ul>{listItems}</ul> */}
     </div>
   );
 }
