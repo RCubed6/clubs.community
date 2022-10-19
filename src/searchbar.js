@@ -2,7 +2,7 @@
 // import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { TextField } from "@mui/material"
 
-const searchBar = ({ posts, setSearchResults }) => {
+const SearchBar = ({ posts, setSearchResults }) => {
     const handleSubmit = (e) => e.preventDefault()
 
     const handleSearchChange = (e) => {
@@ -29,7 +29,7 @@ const searchBar = ({ posts, setSearchResults }) => {
         </header>
     )
 }
-export default searchBar
+export default SearchBar
 
 
 
