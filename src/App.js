@@ -2,6 +2,7 @@ import './index.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
+import Resources from './resources';
 
 /**
  * Entrypoint component for App 
