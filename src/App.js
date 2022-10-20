@@ -1,4 +1,5 @@
-import './App.css';
+// import './App.css';
+import './index.css'
 import axios from "axios";
 import React from "react";
 
@@ -39,14 +40,23 @@ function App() {
     }
   }
 
+  console.log(filteredClubs)
+
   return (
-    <div className="App">
+  
+    <div class="content-center">
+      <h1 class="text-blue-600">Fuck tailwind</h1>
+      <h1 class="text-green-800">Hello</h1>
       <input onChange={handleSearch} type="text"/>
-      {filteredClubs.map((club, index) => (
-        <div key={index}>
-          {club[2]}
-        </div>
-      ))}
+        <div class="grid grid-cols-2">
+          {filteredClubs.map((club, index) => (
+            <div key={index} className="clubs">
+              <h2 class="card-header">{club[2]}</h2>
+              <p class="card-leads">{club[4]}</p>
+              <p class="card-body">{club[6]}</p>
+            </div>
+        ))}
+      </div>
     </div>
   );
 }

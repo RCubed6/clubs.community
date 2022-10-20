@@ -1,6 +1,4 @@
 import React from 'react';
-import "./category.css";
-
 
 export function Category(props) {
   return (

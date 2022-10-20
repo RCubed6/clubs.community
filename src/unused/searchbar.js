@@ -1,35 +1,35 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import { TextField } from "@mui/material"
+// // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// // import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+// import { TextField } from "@mui/material"
 
-const SearchBar = ({ posts, setSearchResults }) => {
-    const handleSubmit = (e) => e.preventDefault()
+// const SearchBar = ({ posts, setSearchResults }) => {
+//     const handleSubmit = (e) => e.preventDefault()
 
-    const handleSearchChange = (e) => {
-        if (!e.target.value) return setSearchResults(posts)
+//     const handleSearchChange = (e) => {
+//         if (!e.target.value) return setSearchResults(posts)
 
-        const resultsArray = posts.filter(post => post.title.includes(e.target.value) || post.body.includes(e.target.value))
+//         const resultsArray = posts.filter(post => post.title.includes(e.target.value) || post.body.includes(e.target.value))
 
-        setSearchResults(resultsArray)
-    }
+//         setSearchResults(resultsArray)
+//     }
 
-    return (
-        <header>
-            <form className="search" onSubmit={handleSubmit}>
-                <h1>search</h1>
-                <TextField
-                id="outlined-basic"
-                variant="outlined"
-                fullWidth
-                label="Search"
-                onChange={handleSearchChange}
-                />
+//     return (
+//         <header>
+//             <form className="search" onSubmit={handleSubmit}>
+//                 <h1>search</h1>
+//                 <TextField
+//                 id="outlined-basic"
+//                 variant="outlined"
+//                 fullWidth
+//                 label="Search"
+//                 onChange={handleSearchChange}
+//                 />
 
-            </form>
-        </header>
-    )
-}
-export default SearchBar
+//             </form>
+//         </header>
+//     )
+// }
+// export default SearchBar
 
 
 

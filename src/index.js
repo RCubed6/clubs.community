@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './tests/reportWebVitals';
 import Club from './club.js';
 import { Category } from './category';
 
 
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 
+// const ChessClub = new Club("Team", "Chess", "Chess", "340", "3:15-4"); 
+// export default ChessClub;
 
-const ChessClub = new Club("Team", "Chess", "Chess", "340", "3:15-4"); 
-export default ChessClub;
-
-// Test logs
-console.log(ChessClub.get_name);
-console.log(ChessClub.name);
+// // Test logs
+// console.log(ChessClub.get_name);
+// console.log(ChessClub.name);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
