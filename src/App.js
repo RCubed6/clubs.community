@@ -32,9 +32,9 @@ function App() {
   const handleSearch = (event) => {
     const search = event.target.value
     if (search) {
-      setFilteredClubs(clubs.filter((club) => club[2]
-      .toLowerCase()
-      .includes(search.toLowerCase())))
+      setFilteredClubs(clubs.filter((club) => 
+      club[2].toLowerCase().includes(search.toLowerCase())
+      || club[4].toLowerCase().includes(search.toLowerCase())))
     } else {
       setFilteredClubs(clubs)
     }
@@ -44,6 +44,11 @@ function App() {
 
   const createModal = (event) => {
     console.log("In modal")
+    render (
+      <div id="overlay">
+        <h1> Hello world. </h1>
+      </div> 
+    )
   }
   
 
