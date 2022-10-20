@@ -3,37 +3,48 @@
 @tailwind utilities;
 
 body {
-  display: flex;
-  justify-content: center;
-  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 /* This styles the input form or search bar. */
 input {
   margin: 10px;
-  font-size: 22px;
+  font-size: 18px;
   width: 710px;
   height: 43px;
-  border-width: thin;
-  border-radius: 5px;
+  border-width: 0px;
+  border-radius: 10px;
   border-color: #D1D7DD;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
+input[type=text] {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+  color: #707070;
+  border: 1px solid #ccc;
+  letter-spacing: -.5px;
+  font-weight: 600;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
 /* Creates 2 columns */
-/* .container {
+.container {
   position: absolute;
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
-  column-gap: 40px;
-} */
+}
 
 /* Global clubs css */
 .clubs {
@@ -42,11 +53,13 @@ input {
   padding: 10px;
   max-width: 350px;
   margin: 10px;
-  background-color: #FFFFFF;  
+  background-color: #FFFFFF; 
+  display: inline-block; 
 }
 
 /* When user hovers mouse over club, changes the background color */
 .clubs:hover {
+  cursor: pointer;
   background-color: #F6F8FB;
   background-color: #F6F8FB;
   -webkit-transition: background-color 300ms linear;

@@ -1,7 +1,7 @@
-// import './App.css';
 import './index.css'
 import axios from "axios";
 import React from "react";
+import { render } from '@testing-library/react';
 
 /**
  * Entrypoint component for App 
@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   /**
-   * Callback to handle typing (onCHange) of the
+   * Callback to handle typing (onChange) of the
    * search inpout field
    */
   const handleSearch = (event) => {
@@ -42,18 +42,21 @@ function App() {
 
   console.log(filteredClubs)
 
-  return (
+  const createModal = (event) => {
+    console.log("In modal")
+  }
   
-    <div class="content-center">
-      <h1 class="text-blue-600">Fuck tailwind</h1>
-      <h1 class="text-green-800">Hello</h1>
-      <input onChange={handleSearch} type="text"/>
-        <div class="grid grid-cols-2">
+
+  return (
+    
+    <div className="">
+      <input onChange={handleSearch} type="text" placeholder="Search..."/>
+        <div class="container">
           {filteredClubs.map((club, index) => (
-            <div key={index} className="clubs">
-              <h2 class="card-header">{club[2]}</h2>
-              <p class="card-leads">{club[4]}</p>
-              <p class="card-body">{club[6]}</p>
+            <div key={index} className="clubs" onClick={createModal}>
+                <h2 class="card-header">{club[2]}</h2>
+                <p class="card-leads">{club[4]}</p>
+                <p class="card-body">{club[6]}</p>
             </div>
         ))}
       </div>
