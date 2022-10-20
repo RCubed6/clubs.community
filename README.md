@@ -1,8 +1,8 @@
 # Future Features:
 
-1.Integration to join clubs, create clubs, and/or request funding within the app.
-2.Authentication system, so only Nueva students can access club info.
-3.Ways for club leaders to dynamically interact with members in the app, such as sending emails or a forum
+1. Integration to join clubs, create clubs, and/or request funding within the app.
+2. Authentication system, so only Nueva students can access club info.
+3. Ways for club leaders to dynamically interact with members in the app, such as sending emails or a forum
 
 # Getting Started with Create React App
 
