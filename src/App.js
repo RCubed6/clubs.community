@@ -2,16 +2,23 @@ import './index.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
-
+import Popup from 'reactjs-popup'
 /**
  * Entrypoint component for App 
  */
 function App() {
-  
+
   // Component State
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
-  
+
+  const the_button = document.querySelector(".js-btn")
+  const modal = document.querySelector(".modal")
+  // Hook for disabling club div onclick
+  const [disable, setDisable] = React.useState(false);
+
+  // const closeSpan = document.querySelector(".close")
+
   /**
    * Get list of Clubs from API
    */
@@ -32,9 +39,9 @@ function App() {
   const handleSearch = (event) => {
     const search = event.target.value
     if (search) {
-      setFilteredClubs(clubs.filter((club) => 
-      club[2].toLowerCase().includes(search.toLowerCase())
-      || club[4].toLowerCase().includes(search.toLowerCase())))
+      setFilteredClubs(clubs.filter((club) =>
+        club[2].toLowerCase().includes(search.toLowerCase())
+        || club[4].toLowerCase().includes(search.toLowerCase())))
     } else {
       setFilteredClubs(clubs)
     }
@@ -42,27 +49,47 @@ function App() {
 
   console.log(filteredClubs)
 
+// Activates Modal popup
+//
+// MODAL ACTIVATES WHEN TRYING TO CLOSE, NEED TO FIX createModal and closeModal:
   const createModal = (event) => {
-    console.log("In modal")
-    render (
-      <div id="overlay">
-        <h1> Hello world. </h1>
-      </div> 
-    )
+    setDisable(true)
+
+    console.log("Activating Modal")
+    document.body.style.display = "background-color: rgba(0,0,0,0.25);"
+    modal.style.display = "block";
   }
-  
+
+
+// Deactivates Modal popup
+// 
+// TO FIX:
+  const closeModal = (event) => {
+    console.log("Close modal")
+    modal.style.display = "none"
+    document.body.style.display = "background-color: rgba(0,0,0,0);"
+  }
+ 
 
   return (
-    
+
     <div className="">
-      <input onChange={handleSearch} type="text" placeholder="Search..."/>
-        <div class="container">
-          {filteredClubs.map((club, index) => (
-            <div key={index} className="clubs" onClick={createModal}>
-                <h2 class="card-header">{club[2]}</h2>
-                <p class="card-leads">{club[4]}</p>
-                <p class="card-body">{club[6]}</p>
+      <input onChange={handleSearch} type="text" placeholder="Search..." />
+      <div className="container">
+        {filteredClubs.map((club, index) => (
+          <div key={index} className="clubs" disabled={disable} onClick={createModal}>
+            <div className="modal">
+              <div className="modal_content">
+                <span className="close" onClick={closeModal}>&times;</span>
+                <p>I'm A Pop Up!!!</p>
+              </div>
             </div>
+
+
+            <h2 className="card-header">{club[2]}</h2>
+            <p className="card-leads">{club[4]}</p>
+            <p className="card-body">{club[6]}</p>
+          </div>
         ))}
       </div>
     </div>
