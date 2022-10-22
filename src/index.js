@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './tests/reportWebVitals';
 import Club from './club.js';
-import { Category } from './category';
-
+import Resources from './resources';
 
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 

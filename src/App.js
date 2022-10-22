@@ -2,7 +2,7 @@ import './index.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
-import Popup from 'reactjs-popup'
+
 /**
  * Entrypoint component for App 
  */
