@@ -1,7 +1,20 @@
 .Resources {
-  width: 100%;
-  display: block;
+  width: 60%;
+  display: inline-block;
   height: 60px;
   font-size: 15px; 
-  font-family: Comic Sans MS, cursive, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 450;
+  font-size: medium;
+  color: #596069; 
+  line-height: 1;
+  letter-spacing: -.4px;
+}
+h1 {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: bolder;
+  font-size: larger;
+  color: #4285F4;
+  letter-spacing: -.5px;
+  padding-top: 16.5%;
 }
