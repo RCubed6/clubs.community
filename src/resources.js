@@ -1,11 +1,10 @@
 import React from 'react';
-import './resources.css'
 import "./index.css"
 
 export function Resources(props) {
   return (
     <div className='Resources'>
-      <h1>More Resources:</h1>
+      <h1 className='Resource-header'>More Resources:</h1>
       <a className='Resources' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSc1Z3Uc_SYBZWU1-O1tLEPGQ9AI2EZjcHp60Vs5eL9l75X3uw/viewform">
         <button className='Resources'>Clubs Funding Application</button>
       </a>

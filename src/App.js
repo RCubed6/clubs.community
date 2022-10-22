@@ -105,7 +105,7 @@ function App() {
         </div>
       </div>
       <div className="Categories">
-        <h1>Categories:</h1>
+        <h1 className='Categories-header'>Categories:</h1>
         <button className="Categories" onClick={handleClick} value={"Academic"}>
           Academic
         </button>
