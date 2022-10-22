@@ -46,6 +46,16 @@ function App() {
       setFilteredClubs(clubs)
     }
   }
+  {/* For category button */}
+  const handleClick = (event) => {
+    const search = event.target.value
+    if (search) {
+      setFilteredClubs(clubs.filter((club) => 
+      club[7].toLowerCase().includes(search.toLowerCase())))
+    } else {
+      setFilteredClubs(clubs)
+    }
+  }
 
   console.log(filteredClubs)
 
@@ -74,6 +84,10 @@ function App() {
   return (
 
     <div className="">
+      {/* Example of a category button; not sure how to integrate */}
+      <button className="categories" onClick={handleClick} value={"Academic"}>
+        Academic
+      </button>
       <input onChange={handleSearch} type="text" placeholder="Search..." />
       <div className="container">
         {filteredClubs.map((club, index) => (
