@@ -81,18 +81,12 @@ const closeModal = () => {
 }
 
   return (
-    <div className="">
-      <div className='Main'>
-          <input onChange={handleSearch} type="text" placeholder="Search..." />
-          <div className="container">
-            {filteredClubs.map((club, index) => (
-              <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
-                <div className="modal">
-                  <div className="modal_content">
-                    <span className="close" onClick={closeModal}>&times;</span>
-                    <p>I'm A Pop Up!!!</p>
-                  </div>
-                </div>
+    <div className="Main">
+      <input onChange={handleSearch} type="text" placeholder="Search..." />
+      <div className="container">
+        {filteredClubs.map((club, index) => (
+          <div className="parentClubs">
+            <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
               <h2 className="card-header">{club[2]}</h2>
               <p className="card-leads">{club[4]}</p>
               <p className="card-body">{club[6]}</p>
