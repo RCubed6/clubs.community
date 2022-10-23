@@ -72,7 +72,7 @@ input[type=text] {
   max-width: 350px;
   margin: 10px;
   background-color: #FFFFFF; 
-  display: inline-block; 
+  display: inline-block;
 }
 
 /* When user hovers mouse over club, changes the background color */
@@ -83,6 +83,15 @@ input[type=text] {
   -webkit-transition: background-color 300ms linear;
   -ms-transition: background-color 300ms linear;
   transition: background-color 250ms linear;
+}
+
+.clubs[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+dialog[showModal] {
+  display: grid;
 }
 
 /* styles the name of the club */
