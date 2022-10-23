@@ -11,8 +11,13 @@
   vertical-align: middle;
 }
 body {
+  width: 60%;
+}
+.Main {
+  width: 50%;
   position: absolute;
   left: 50%;
+  display: inline-block;
   transform: translate(-50%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -20,7 +25,18 @@ body {
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
 }
-
+.Categories {
+  width: 60%;
+  display: inline-block;
+  height: 60px;
+  font-size: 15px; 
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 450;
+  font-size: medium;
+  color: #596069; 
+  line-height: 1;
+  letter-spacing: -.4px;
+}
 #overlay {
   position: absolute;
   top: 0;
@@ -154,4 +170,32 @@ dialog[showModal] {
 .close:hover {
   color: red;
   cursor: pointer;
+}
+
+.Resources {
+  width: 60%;
+  display: inline-block;
+  height: 60px;
+  font-size: 15px; 
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 450;
+  font-size: medium;
+  color: #596069; 
+  line-height: 1;
+  letter-spacing: -.4px;
+}
+h1 {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: bolder;
+  font-size: larger;
+  color: #4285F4;
+  letter-spacing: -.5px;
+}
+
+.Resource-header {
+  padding-top: 10%;
+}
+
+.Categories-header {
+  padding-top: 10%;
 }

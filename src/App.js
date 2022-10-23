@@ -7,6 +7,9 @@ import { isDisabled } from '@testing-library/user-event/dist/utils';
 /**
  * Entrypoint component for App 
  */
+
+
+ 
 function App() {
 
   // Component State
@@ -51,7 +54,7 @@ function App() {
       setFilteredClubs(clubs)
     }
   }
-  {/* For category button */ }
+  // {/* For category button */ }
   const handleClick = (event) => {
     const search = event.target.value
     if (search) {
@@ -62,7 +65,7 @@ function App() {
     }
   }
 
-  // console.log(filteredClubs)
+  // // console.log(filteredClubs)
 
   // Activates Modal popup
   
@@ -81,7 +84,6 @@ function App() {
 
 
   return (
-
     <div className="">
       {/* Example of a category button; not sure how to integrate */}
       <button className="categories" onClick={handleClick} value={"Academic"}>
@@ -103,7 +105,44 @@ function App() {
         <p>{selectedClub}</p>
         <span className="close" onClick={closeModal}>&times;</span>
       </dialog>
+
+      <div className="Categories">
+        <h1 className='Categories-header'>Categories:</h1>
+        <button className="Categories" onClick={handleClick} value={"Academic"}>
+          Academic
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Activism"}>
+          Activism
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Affinity Group"}>
+          Affinity Groups
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Community Service"}>
+          Community Service
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Hobbies & Interests"}>
+          Hobbies & Interests
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Language & Culture"}>
+          Language & Culture
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Sports & Fitness"}>
+          Sports & Fitness
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"STEM"}>
+          STEM
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Visual & Performing Arts"}>
+          Visual & Performing Arts
+        </button>
+        <button className="Categories"  onClick={handleClick} value={"Writing & Literature"}>
+          Writing & Literature
+        </button>
+      </div>
     </div>
+    
+
+
   );
 }
 
