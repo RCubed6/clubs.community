@@ -104,8 +104,11 @@ function App() {
           ))}
         </div>
       </div>
-      <div className="Categories">
-        <h1 className='Categories-header'>Categories:</h1>
+      {/* Prints category buttons to sort clubs by category */}
+      <div className="Categories-bucket">
+        {/* Category element header */}
+        <h1>Categories:</h1>
+        {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
         <button className="Categories" onClick={handleClick} value={"Academic"}>
           Academic
         </button>
@@ -136,6 +139,21 @@ function App() {
         <button className="Categories"  onClick={handleClick} value={"Writing & Literature"}>
           Writing & Literature
         </button>
+      </div>
+      <div className='Categories-bucket'>
+        {/* Resource element header */}
+        <h1>More Resources:</h1>
+
+        {/* Each button is wrapped by an a tag which means when the button is clicked it will activate the link */}
+        <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSc1Z3Uc_SYBZWU1-O1tLEPGQ9AI2EZjcHp60Vs5eL9l75X3uw/viewform">
+          <button className='Categories'>Clubs Funding Application</button>
+        </a>
+        <a className='Categories' className ="card-leads" href="https://docs.google.com/document/d/1UPBjlHAmMsutsL9CanyyLAroq7_CjUQGBO-5YGY2tTI/edit">
+          <button className='Categories'>Clubs Guidlines</button>
+        </a>
+        <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSfkJI5qw_puxyJ6X2gZ7XsXda33-UFLzSG4VpsdvQfus4WU_g/viewform">
+          <button className='Categories'>Clubs Creation Application</button>
+        </a>  
       </div>
     </div>
   );

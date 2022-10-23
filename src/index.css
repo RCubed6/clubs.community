@@ -1,18 +1,8 @@
-.parent {
-  border: 1px solid black;
-  margin: 1rem;
-  padding: 2rem 2rem;
-  text-align: center;
-}
-.child {
-  display: inline-block;
-  border: 1px solid red;
-  padding: 1rem 1rem;
-  vertical-align: middle;
-}
+/* affects all html */
 body {
   width: 60%;
 }
+/* div that contains club rendering */
 .Main {
   width: 50%;
   position: absolute;
@@ -25,18 +15,31 @@ body {
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
 }
+/* category + resources buttons */
 .Categories {
   width: 60%;
   display: inline-block;
-  height: 60px;
-  font-size: 15px; 
+  height: 30px;
+  font-size: 10px; 
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 450;
   font-size: medium;
-  color: #596069; 
+  color: #596069;
+  background-color: white;
+  outline: none;
+  border-width: 1px;
+  margin-top: -2px;
   line-height: 1;
   letter-spacing: -.4px;
 }
+/* category container div */
+.Categories-bucket {
+  outline: none;
+  width: 40%;
+  padding-left: 10%;
+  padding-right: 5%;
+}
+/* overlay */
 #overlay {
   position: absolute;
   top: 0;
@@ -132,7 +135,7 @@ input[type=text] {
   overflow: hidden;
 }
 
-
+/* popup styling*/
 .modal {
   display: none;
   position: fixed;
@@ -162,31 +165,14 @@ input[type=text] {
   color: red;
   cursor: pointer;
 }
-
-.Resources {
-  width: 60%;
-  display: inline-block;
-  height: 60px;
-  font-size: 15px; 
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 450;
-  font-size: medium;
-  color: #596069; 
-  line-height: 1;
-  letter-spacing: -.4px;
-}
+ 
+/* applies to the button headers */
 h1 {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: bolder;
   font-size: larger;
-  color: #4285F4;
   letter-spacing: -.5px;
-}
-
-.Resource-header {
   padding-top: 10%;
-}
-
-.Categories-header {
-  padding-top: 10%;
+  padding-left: 2%;
+  color: #25292F;
 }
