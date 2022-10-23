@@ -109,6 +109,9 @@ const closeModal = () => {
         {/* Category element header */}
         <h1>Categories:</h1>
         {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
+        <button className="Categories" onClick={handleClick} value={""}>
+          All Categories
+        </button>
         <button className="Categories" onClick={handleClick} value={"Academic"}>
           Academic
         </button>
