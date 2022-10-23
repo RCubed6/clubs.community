@@ -84,11 +84,7 @@ function App() {
 
 
   return (
-    <div className="">
-      {/* Example of a category button; not sure how to integrate */}
-      <button className="categories" onClick={handleClick} value={"Academic"}>
-        Academic
-      </button>
+    <div className="Main">
       <input onChange={handleSearch} type="text" placeholder="Search..." />
       <div className="container">
         {filteredClubs.map((club, index) => (
