@@ -93,8 +93,6 @@ const closeModal = () => {
                     <p>I'm A Pop Up!!!</p>
                   </div>
                 </div>
-
-
               <h2 className="card-header">{club[2]}</h2>
               <p className="card-leads">{club[4]}</p>
               <p className="card-body">{club[6]}</p>
