@@ -1,3 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Header */
+.grid-container {
+  margin-top: 30px;
+  margin-left: 0;
+  margin-right: 30%;
+  margin-bottom: 2%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  position: relative;
+}
+
+.grid-container > div {
+  /* width: 200px; */
+}
+
+.box1 {
+  border: 2px solid #D1D7DD;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #0028BD;
+  color: #D1D7DD;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  font-size: 18px;
+  border-right: none;
+  width: 200px;
+}
+
+.box1 > span {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.box2 {
+  border: 2px solid #D1D7DD;
+  border-right: none;
+  width: 150px;
+  height: 100px;
+}
+
+.box4 {
+  border: 2px solid #D1D7DD;
+  background-color: #D7F24E;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 200px;
+}
+
+#logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+}
+
+#club {
+  width: 150px;
+  height: 100px;
+}
+/* End of Header */
+
 /* affects all html */
 body {
   width: 60%;
@@ -5,6 +73,7 @@ body {
 .Categories:active {
       background-color:#c4d7f7;
 }
+
 /* div that contains club rendering */
 .Main {
   width: 50%;
@@ -31,13 +100,14 @@ body {
   background-color: white;
   outline: none;
   border-width: 1px;
+  border-style: solid;
+  /* border-radius: 10px; */
   margin-top: -2px;
   line-height: 1;
   letter-spacing: -.4px;
 }
 /* category container div */
 .Categories-bucket {
-  outline: none;
   width: 40%;
   padding-left: 10%;
   padding-right: 5%;
@@ -207,7 +277,7 @@ dialog::backdrop {
  
 /* applies to the button headers */
 h1 {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   font-weight: bolder;
   font-size: larger;
   letter-spacing: -.5px;

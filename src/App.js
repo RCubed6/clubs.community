@@ -84,6 +84,22 @@ const closeModal = () => {
     <div className="">
       {/* Renders search bar and clubs */}
       <div className='Main'>
+        {/* Header */}
+        <div className="grid-body">
+          <div className="grid-container">
+            <div className="box1">
+              <img id="logo" src="nueva.png"/>
+              <span>The Nueva School</span>
+            </div>
+            <div className="box2">
+              <img id="club" src="club1.jpg"/>
+            </div>
+            <div className="box2">
+              <img id="club" src="club2.jpg"/>
+            </div>
+            <div className="box4"></div>
+          </div>
+      </div>
         {/* Search bar */}
           <input onChange={handleSearch} type="text" placeholder="Search for clubs and people..." />
           {/* Clubs */}
