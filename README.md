@@ -1,14 +1,16 @@
-# Future Features:
+# clubs.community
+A platform to make finding clubs easier.
 
-1. Integration to join clubs, create clubs, and/or request funding within the app.
-2. Authentication system, so only Nueva students can access club info.
-3. Ways for club leaders to dynamically interact with members in the app, such as sending emails or a forum
+## Current Features:
+1. View clubs, and display a popup for them when clicked
+2. Search for clubs, and filter them by category
+3. Links to other resources for making the club experience better!
 
-# Getting Started with Create React App
+# Run Locally:
+### Clone the project:
+### `https://github.com/RCubed6/clubs.community`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Necessary librararies
+## Install dependencies:
 
 axios, google-auth-library, googleapis. Run:
 
@@ -16,7 +18,7 @@ axios, google-auth-library, googleapis. Run:
 
 To install the packages.
 
-## Available Scripts
+## Run the front-end and back-end:
 
 In the project directory, you can run:
 
@@ -34,6 +36,16 @@ Next navigate to the folder api, and run:
 
 Runs the back-end. Open http://localhost:3001 to view it in your browser.\
 Both need to be running for the project to run correctly.
+
+# Future Features:
+
+1. Integration to join clubs, create clubs, and/or request funding within the app.
+2. Authentication system, so only Nueva students can access club info.
+3. Ways for club leaders to dynamically interact with members in the app, such as sending emails or a forum
+
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### `npm test`
 

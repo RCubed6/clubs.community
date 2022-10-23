@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom/client';
 // import './index.css';
 import App from './App';
 import reportWebVitals from './tests/reportWebVitals';
-import Club from './club.js';
-import Resources from './resources';
-
 // TO BE REPLACED BY FIREBASE CLUB ARRAY
 
 // const ChessClub = new Club("Team", "Chess", "Chess", "340", "3:15-4"); 
@@ -21,7 +18,6 @@ root.render(
   <React.StrictMode>
     {/*  */}
     <App></App>
-    <Resources></Resources>
   </React.StrictMode>
 );
 

@@ -1,9 +1,7 @@
-import './index.css'
+import './main.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
-
 /**
  * Entrypoint component for App 
  */
@@ -54,34 +52,33 @@ function App() {
       setFilteredClubs(clubs)
     }
   }
-  // {/* For category button */ }
+  // {/* For category button */}
   const handleClick = (event) => {
     const search = event.target.value
     if (search) {
-      setFilteredClubs(clubs.filter((club) =>
-        club[7].toLowerCase().includes(search.toLowerCase())))
+      setFilteredClubs(clubs.filter((club) => 
+      club[7].toLowerCase().includes(search.toLowerCase())))
     } else {
       setFilteredClubs(clubs)
     }
   }
 
-  // // console.log(filteredClubs)
+  // console.log(filteredClubs)
 
-  // Activates Modal popup
-  
-  const createModal = (i) => {
-    setSelectedClub(i[6])
-    console.log("Activating Modal")
-    setDisable(true)
-    dialog.showModal();
-  }
+// Activates Modal popup
+const createModal = (i) => {
+  setSelectedClub(i[6])
+  console.log("Activating Modal")
+  setDisable(true)
+  dialog.showModal();
+}
 
 
-  // Deactivates Modal popup
-  const closeModal = () => {
-    dialog.close();
-  }
+// Deactivates Modal popup
 
+const closeModal = () => {
+  dialog.close();
+}
 
   return (
     <div className="Main">
@@ -94,16 +91,18 @@ function App() {
               <p className="card-leads">{club[4]}</p>
               <p className="card-body">{club[6]}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <dialog>
         <p>{selectedClub}</p>
         <span className="close" onClick={closeModal}>&times;</span>
       </dialog>
-
-      <div className="Categories">
-        <h1 className='Categories-header'>Categories:</h1>
+      {/* Prints category buttons to sort clubs by category */}
+      <div className="Categories-bucket">
+        {/* Category element header */}
+        <h1>Categories:</h1>
+        {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
         <button className="Categories" onClick={handleClick} value={"Academic"}>
           Academic
         </button>
@@ -135,10 +134,22 @@ function App() {
           Writing & Literature
         </button>
       </div>
+      <div className='Categories-bucket'>
+        {/* Resource element header */}
+        <h1>More Resources:</h1>
+
+        {/* Each button is wrapped by an a tag which means when the button is clicked it will activate the link */}
+        <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSc1Z3Uc_SYBZWU1-O1tLEPGQ9AI2EZjcHp60Vs5eL9l75X3uw/viewform">
+          <button className='Categories'>Clubs Funding Application</button>
+        </a>
+        <a className='Categories' className ="card-leads" href="https://docs.google.com/document/d/1UPBjlHAmMsutsL9CanyyLAroq7_CjUQGBO-5YGY2tTI/edit">
+          <button className='Categories'>Clubs Guidlines</button>
+        </a>
+        <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSfkJI5qw_puxyJ6X2gZ7XsXda33-UFLzSG4VpsdvQfus4WU_g/viewform">
+          <button className='Categories'>Clubs Creation Application</button>
+        </a>  
+      </div>
     </div>
-    
-
-
   );
 }
 
