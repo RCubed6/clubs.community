@@ -1,4 +1,4 @@
-import './index.css'
+import './main.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
@@ -13,11 +13,15 @@ function App() {
   // Component State
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
+  const [selectedClub, setSelectedClub] = React.useState(undefined)
 
-  const the_button = document.querySelector(".js-btn")
-  const modal = document.querySelector(".modal")
+  // const the_button = document.querySelector(".js-btn")
+  // const modal = document.querySelector(".modal")
   // Hook for disabling club div onclick
   const [disable, setDisable] = React.useState(false);
+
+  const dialog = document.querySelector("dialog");
+  // const club = document.querySelector(".clubs");
 
   // const closeSpan = document.querySelector(".close")
 
@@ -62,25 +66,19 @@ function App() {
   // console.log(filteredClubs)
 
 // Activates Modal popup
-//
-// MODAL ACTIVATES WHEN TRYING TO CLOSE, NEED TO FIX createModal and closeModal:
-  const createModal = (event) => {
-    setDisable(true)
-
-    console.log("Activating Modal")
-    document.body.style.display = "background-color: rgba(0,0,0,0.25);"
-    modal.style.display = "block";
-  }
+const createModal = (i) => {
+  setSelectedClub(i[6])
+  console.log("Activating Modal")
+  setDisable(true)
+  dialog.showModal();
+}
 
 
 // Deactivates Modal popup
-// 
-// TO FIX:
-  const closeModal = (event) => {
-    console.log("Close modal")
-    modal.style.display = "none"
-    document.body.style.display = "background-color: rgba(0,0,0,0);"
-  }
+
+const closeModal = () => {
+  dialog.close();
+}
 
   return (
     <div className="">
@@ -88,7 +86,7 @@ function App() {
           <input onChange={handleSearch} type="text" placeholder="Search..." />
           <div className="container">
             {filteredClubs.map((club, index) => (
-              <div key={index} className="clubs" disabled={disable} onClick={createModal}>
+              <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
                 <div className="modal">
                   <div className="modal_content">
                     <span className="close" onClick={closeModal}>&times;</span>
@@ -104,6 +102,10 @@ function App() {
           ))}
         </div>
       </div>
+      <dialog>
+        <p>{selectedClub}</p>
+        <span className="close" onClick={closeModal}>&times;</span>
+      </dialog>
       {/* Prints category buttons to sort clubs by category */}
       <div className="Categories-bucket">
         {/* Category element header */}
