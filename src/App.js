@@ -91,13 +91,6 @@ const closeModal = () => {
             {filteredClubs.map((club, index) => (
               // creating div for each club
               <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
-                {/* popup for each club */}
-                <div className="modal">
-                  <div className="modal_content">
-                    <span className="close" onClick={closeModal}>&times;</span>
-                    <p>I'm A Pop Up!!!</p>
-                  </div>
-                </div>
               {/* rendering club objects */}
               <h2 className="card-header">{club[2]}</h2>
               <p className="card-leads">{club[4]}</p>
@@ -106,9 +99,9 @@ const closeModal = () => {
           ))}
         </div>
       </div>
-      {/* rendering modal */}
+      {/* rendering popup */}
       <dialog>
-        <p>{selectedClub}</p>
+        <p className="card-expand">{selectedClub}</p>
         <span className="close" onClick={closeModal}>&times;</span>
       </dialog>
       {/* Prints category buttons to sort clubs by category */}
