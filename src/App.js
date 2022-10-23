@@ -2,6 +2,8 @@ import './index.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
+
 /**
  * Entrypoint component for App 
  */
@@ -13,11 +15,15 @@ function App() {
   // Component State
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
+  const [selectedClub, setSelectedClub] = React.useState(undefined)
 
-  const the_button = document.querySelector(".js-btn")
-  const modal = document.querySelector(".modal")
+  // const the_button = document.querySelector(".js-btn")
+  // const modal = document.querySelector(".modal")
   // Hook for disabling club div onclick
   const [disable, setDisable] = React.useState(false);
+
+  const dialog = document.querySelector("dialog");
+  // const club = document.querySelector(".clubs");
 
   // const closeSpan = document.querySelector(".close")
 
@@ -48,67 +54,64 @@ function App() {
       setFilteredClubs(clubs)
     }
   }
-  // {/* For category button */}
+  // {/* For category button */ }
   const handleClick = (event) => {
     const search = event.target.value
     if (search) {
-      setFilteredClubs(clubs.filter((club) => 
-      club[7].toLowerCase().includes(search.toLowerCase())))
+      setFilteredClubs(clubs.filter((club) =>
+        club[7].toLowerCase().includes(search.toLowerCase())))
     } else {
       setFilteredClubs(clubs)
     }
   }
 
-  // console.log(filteredClubs)
+  // // console.log(filteredClubs)
 
-// Activates Modal popup
-//
-// MODAL ACTIVATES WHEN TRYING TO CLOSE, NEED TO FIX createModal and closeModal:
-  const createModal = (event) => {
-    setDisable(true)
-
+  // Activates Modal popup
+  
+  const createModal = (i) => {
+    setSelectedClub(i[6])
     console.log("Activating Modal")
-    document.body.style.display = "background-color: rgba(0,0,0,0.25);"
-    modal.style.display = "block";
+    setDisable(true)
+    dialog.showModal();
   }
 
 
-// Deactivates Modal popup
-// 
-// TO FIX:
-  const closeModal = (event) => {
-    console.log("Close modal")
-    modal.style.display = "none"
-    document.body.style.display = "background-color: rgba(0,0,0,0);"
+  // Deactivates Modal popup
+  const closeModal = () => {
+    dialog.close();
   }
+
 
   return (
     <div className="">
-      <div className='Main'>
-          <input onChange={handleSearch} type="text" placeholder="Search..." />
-          <div className="container">
-            {filteredClubs.map((club, index) => (
-              <div key={index} className="clubs" disabled={disable} onClick={createModal}>
-                <div className="modal">
-                  <div className="modal_content">
-                    <span className="close" onClick={closeModal}>&times;</span>
-                    <p>I'm A Pop Up!!!</p>
-                  </div>
-                </div>
-
-
+      {/* Example of a category button; not sure how to integrate */}
+      <button className="categories" onClick={handleClick} value={"Academic"}>
+        Academic
+      </button>
+      <input onChange={handleSearch} type="text" placeholder="Search..." />
+      <div className="container">
+        {filteredClubs.map((club, index) => (
+          <div className="parentClubs">
+            <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
               <h2 className="card-header">{club[2]}</h2>
               <p className="card-leads">{club[4]}</p>
               <p className="card-body">{club[6]}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+      <dialog>
+        <p>{selectedClub}</p>
+        <span className="close" onClick={closeModal}>&times;</span>
+      </dialog>
       {/* Prints category buttons to sort clubs by category */}
       <div className="Categories-bucket">
         {/* Category element header */}
         <h1>Categories:</h1>
         {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
+      <div className="Categories">
+        <h1 className='Categories-header'>Categories:</h1>
         <button className="Categories" onClick={handleClick} value={"Academic"}>
           Academic
         </button>
@@ -140,6 +143,7 @@ function App() {
           Writing & Literature
         </button>
       </div>
+      </div>
       <div className='Categories-bucket'>
         {/* Resource element header */}
         <h1>More Resources:</h1>
@@ -156,6 +160,9 @@ function App() {
         </a>  
       </div>
     </div>
+    
+
+
   );
 }
 
