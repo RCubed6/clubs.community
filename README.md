@@ -1,7 +1,12 @@
 # clubs.community
 A platform to make finding clubs easier.
 
+<p align="center">
+<img width="500" alt="github-ex-page" src="https://user-images.githubusercontent.com/75544738/197845107-95b27667-9bc1-4c66-8903-11c73fe6defc.png">
+</p>
+
 ## Current Features:
+
 1. View clubs, and display a popup for them when clicked
 2. Search for clubs, and filter them by category
 3. Links to other resources for making the club experience better!
