@@ -40,18 +40,16 @@ npm start
 This will run the front-end in the development mode.\
 Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
-This page will reload when any changes are made to the `clubs.community/api` folder.
-You may also see any lint warnings in the console. These are not fatal errors.
-
+ 
 Next navigate to the global directory `clubs.community`, and run:
 
 ```
 npm start
 ```
 
-This runs the frontend. Open http://localhost:3000 to view it in your browser.
+This runs the frontend. Open http://localhost:3000 to view it in your browser. 
 
-Both the backend and frontend need to be running for clubs to populate the website.
+The frontend and backend will update automatically when changes are saved. Lint warnings may be shown in the console. These are not fatal errors.
 
 <hr />
 
