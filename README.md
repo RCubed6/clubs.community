@@ -6,36 +6,49 @@ A platform to make finding clubs easier.
 2. Search for clubs, and filter them by category
 3. Links to other resources for making the club experience better!
 
+<hr />
+
 # Run Locally:
-### Clone the project:
-### `https://github.com/RCubed6/clubs.community`
+**1. Clone the project:**
 
-## Install dependencies:
+```
+git clone https://github.com/RCubed6/clubs.community.git
+```
 
-axios, google-auth-library, googleapis. Run:
+**2. In the `clubs.commmunity` folder, install dependencies:**
 
-### `npm install [library]`
+```
+npm i
+```
 
-To install the packages.
+**3. Run the front-end and back-end:**
 
-## Run the front-end and back-end:
+**Important:** You must start the backend before running the frontend!
 
-In the project directory, you can run:
+In the project directory, open the `clubs.community/api` folder, then run `npm start`:
 
-### `npm start`
+```
+cd api
+npm start
+```
 
-Runs the front-end in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This will run the front-end in the development mode.\
+Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This page will reload when any changes are made to the `clubs.community/api` folder.
+You may also see any lint warnings in the console. These are not fatal errors.
 
-Next navigate to the folder api, and run:
+Next navigate to the global directory `clubs.community`, and run:
 
-### `npm start`
+```
+npm start
+```
 
-Runs the back-end. Open http://localhost:3001 to view it in your browser.\
-Both need to be running for the project to run correctly.
+This runs the frontend. Open http://localhost:3000 to view it in your browser.
+
+Both the backend and frontend need to be running for clubs to populate the website.
+
+<hr />
 
 # Future Features:
 
@@ -43,9 +56,7 @@ Both need to be running for the project to run correctly.
 2. Authentication system, so only Nueva students can access club info.
 3. Ways for club leaders to dynamically interact with members in the app, such as sending emails or a forum
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Getting Started with React
 
 ### `npm test`
 
