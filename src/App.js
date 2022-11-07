@@ -168,7 +168,7 @@ const closeModal = () => {
           <button className='Categories'>Clubs Funding Application</button>
         </a>
         <a className='Categories' className ="card-leads" href="https://docs.google.com/document/d/1UPBjlHAmMsutsL9CanyyLAroq7_CjUQGBO-5YGY2tTI/edit">
-          <button className='Categories'>Clubs Guidelines</button>
+          <button className='Categories'>Clubs Guidlines</button>
         </a>
         <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSfkJI5qw_puxyJ6X2gZ7XsXda33-UFLzSG4VpsdvQfus4WU_g/viewform">
           <button className='Categories'>Clubs Creation Application</button>
