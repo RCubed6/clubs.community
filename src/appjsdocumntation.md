@@ -1,3 +1,11 @@
+## Files:
+
+Most functions are contained within three files:
+
+- `App.js` contains all the frontend functions.
+- `main.css` contains all css.
+- `api/server.js` contains all backend functions.
+
 # Search Bar
 First, data is fetched from the local server on localhost:3001
 - React.useeffect is a hook which runs a function once parameter values are changed. This is used to fetch the data. 
@@ -6,6 +14,7 @@ First, data is fetched from the local server on localhost:3001
     `const [filteredClubs, setFilteredClubs] = React.useState([])` 
 
     is run, which simply updates the displayed clubs.
+
 ## clubs hook
 The clubs hook `const [clubs, setClubs] = React.useState([])` is used to store all the clubs.
 - Updated when the clubs are fetched from the backend.
