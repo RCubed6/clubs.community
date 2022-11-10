@@ -2,11 +2,11 @@ import './main.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
+import {GoogleSignIn} from "./googleAuthentication.js";
+
 /**
  * Entrypoint component for App 
  */
-
-
  
 function App() {
 
@@ -14,6 +14,8 @@ function App() {
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
   const [selectedClub, setSelectedClub] = React.useState(undefined)
+  const profileData = React.useState(JSON.parse(localStorage.getItem("profileData")))
+  console.log(profileData);
 
   // const the_button = document.querySelector(".js-btn")
   // const modal = document.querySelector(".modal")
@@ -82,6 +84,9 @@ const closeModal = () => {
 
   return (
     <div className="">
+      <p>{profileData[0]["email"]}</p>
+      <GoogleSignIn>
+      </GoogleSignIn>
       {/* Renders search bar and clubs */}
       <div className='Main'>
         {/* Header */}
