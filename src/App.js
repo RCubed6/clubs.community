@@ -71,7 +71,7 @@ function App() {
     if (search) {
       setFilteredClubs(clubs.filter((club) =>
         club.name.toLowerCase().includes(search.toLowerCase())
-        || club.teacher.toLowerCase().includes(search.toLowerCase())
+        || club.teachers.toLowerCase().includes(search.toLowerCase())
         || club.leads.toLowerCase().includes(search.toLowerCase())))
         
       console.log("Clubs:")
@@ -100,7 +100,7 @@ const createModal = (i) => {
   console.log(i);
   setSelectedClubDesc(i.description);
   setSelectedClubMail(i.emails);
-  setSelectedClubAdv(i.teacher);
+  setSelectedClubAdv(i.teachers);
   setSelectedClubLead(i.leads);
   setSelectedClubName(i.name);
   setSelectedClubTags(i.categories);
@@ -157,7 +157,7 @@ const closeModal = () => {
           <div className="modal">
             <h2 className="card-expand-header">{selectedClubName}</h2>
             <p className="card-expand-leads">Lead(s): {selectedClubLead}  ({selectedClubMail})</p>
-            <p className="card-expand-leads">Faculty Advisor: {selectedClubAdv}</p>
+            <p className="card-expand-leads">Faculty Advisor(s): {selectedClubAdv}</p>
             <p className="card-expand">Description: {selectedClubDesc}</p>
             <p className="card-expand">Categories: {selectedClubTags}</p>
             
