@@ -74,8 +74,8 @@ function App() {
     if (search) {
       setFilteredClubs(clubs.filter((club) =>
         club.name.toLowerCase().includes(search.toLowerCase())
-        || club.teachers.toLowerCase().includes(search.toLowerCase())
-        || club.leads.toLowerCase().includes(search.toLowerCase())))
+        || club.teachers.join(', ').toLowerCase().includes(search.toLowerCase())
+        || club.leads.join(', ').toLowerCase().includes(search.toLowerCase())))
         
       console.log("Clubs:")
       console.log(clubs);
@@ -84,6 +84,7 @@ function App() {
       setFilteredClubs(clubs)
     }
   }
+
   // {/* For category button */}
   const handleClick = (event) => {
     const search = event.target.value
@@ -159,7 +160,7 @@ const closeModal = () => {
           <div className='modal-backdrop' onClick={() => setShowModal(false)}></div>
           <div className="modal">
             <h2 className="card-expand-header">{selectedClubName}</h2>
-            <p className="card-expand-leads">Lead(s): {selectedClubLead}  ({selectedClubMail})</p>
+            <p className="card-expand-leads">Lead(s): {selectedClubLead} ({selectedClubMail})</p>
             <p className="card-expand-leads">Faculty Advisor(s): {selectedClubAdv}</p>
             <p className="card-expand">Description: {selectedClubDesc}</p>
             <p className="card-expand">Categories: {selectedClubTags}</p>
