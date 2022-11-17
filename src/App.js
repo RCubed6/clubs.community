@@ -52,7 +52,10 @@ function App() {
         results.splice(0, 1);
         let newResults = [];
         for(let i = 0; i < results.length; i++){
-          let newClub = new Club(results[i][2], results[i][4], results[i][3], results[i][5], results[i][6], results[i][7]);
+          let leads = results[i][4].split(", ");
+          let teachers = results[i][3].split(", ");
+          let emails = results[i][5].split(", ");
+          let newClub = new Club(results[i][2], leads, teachers, emails, results[i][6], results[i][7]);
           newResults.push(newClub);
         }
         console.log("newResults");
@@ -99,9 +102,9 @@ const createModal = (i) => {
   console.log("Open Modal");
   console.log(i);
   setSelectedClubDesc(i.description);
-  setSelectedClubMail(i.emails);
-  setSelectedClubAdv(i.teachers);
-  setSelectedClubLead(i.leads);
+  setSelectedClubMail(i.emails.join(', '));
+  setSelectedClubAdv(i.teachers.join(', '));
+  setSelectedClubLead(i.leads.join(', '));
   setSelectedClubName(i.name);
   setSelectedClubTags(i.categories);
   setDisable(true);
@@ -144,7 +147,7 @@ const closeModal = () => {
               <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
               {/* rendering club objects */}
               <h2 className="card-header">{club.name}</h2>
-              <p className="card-leads">{club.leads}</p>
+              <p className="card-leads">{club.leads.join(', ')}</p>
               <p className="card-body">{club.description}</p>
             </div>
           ))}
