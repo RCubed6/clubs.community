@@ -204,7 +204,7 @@ input[type=text] {
 }
 
 .modal-backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: #252424cc;
@@ -270,7 +270,7 @@ dialog::backdrop {
 
 /* popup styling*/
 .modal {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
