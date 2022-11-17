@@ -188,6 +188,30 @@ input[type=text] {
   color: #596069; 
 }
 
+.card-expand-header {
+  font-weight: bolder;
+  font-size: xx-large;
+  color: #4285F4;
+  letter-spacing: -.5px;
+}
+
+.card-expand-leads {
+  font-weight: bold;
+  font-size: medium;
+  margin-top: -1em;
+  color: #596069;
+  letter-spacing: -.5px;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #252424cc;
+  height: 100%;
+  width: 100vw;
+}
+
 dialog {
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   border: none;
@@ -246,12 +270,18 @@ dialog::backdrop {
 
 /* popup styling*/
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.25);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  border: none;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 10px;
+  width: 50%;
+  margin:20px auto;
 }
 
 .modal_content {

@@ -1,6 +1,7 @@
 import './main.css'
 import axios from "axios";
 import React from "react";
+import {Club} from './Club.js';
 import { render } from '@testing-library/react';
 /**
  * Entrypoint component for App 
@@ -13,7 +14,22 @@ function App() {
   // Component State
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
-  const [selectedClub, setSelectedClub] = React.useState(undefined)
+  // popup club description
+  const [selectedClubDesc, setSelectedClubDesc] = React.useState(undefined)
+  // popup club email
+  const [selectedClubMail, setSelectedClubMail] = React.useState(undefined)
+  // popup club advisor
+  const [selectedClubAdv, setSelectedClubAdv] = React.useState(undefined)
+  // popup club leader(s)
+  const [selectedClubLead, setSelectedClubLead] = React.useState(undefined)
+  // popup club email
+  const [selectedClubName, setSelectedClubName] = React.useState(undefined)
+  // popup club advisor
+  const [selectedClubTags, setSelectedClubTags] = React.useState(undefined)
+  // modal boolean state
+  const [showModal, setShowModal] = React.useState(false)
+  
+
 
   // const the_button = document.querySelector(".js-btn")
   // const modal = document.querySelector(".modal")
@@ -31,10 +47,18 @@ function App() {
   React.useEffect(() => {
     axios.get("http://localhost:3001")
       .then((response) => {
+        console.log(response);
         const results = response.data.values;
         results.splice(0, 1);
-        setClubs(results);
-        setFilteredClubs(results)
+        let newResults = [];
+        for(let i = 0; i < results.length; i++){
+          let newClub = new Club(results[i][2], results[i][4], results[i][3], results[i][5], results[i][6], results[i][7]);
+          newResults.push(newClub);
+        }
+        console.log("newResults");
+        console.log(newResults);
+        setClubs(newResults);
+        setFilteredClubs(newResults);
       })
   }, []);
 
@@ -46,9 +70,14 @@ function App() {
     const search = event.target.value
     if (search) {
       setFilteredClubs(clubs.filter((club) =>
-        club[2].toLowerCase().includes(search.toLowerCase())
-        || club[4].toLowerCase().includes(search.toLowerCase())))
+        club.name.toLowerCase().includes(search.toLowerCase())
+        || club.teachers.toLowerCase().includes(search.toLowerCase())
+        || club.leads.toLowerCase().includes(search.toLowerCase())))
+        
+      console.log("Clubs:")
+      console.log(clubs);
     } else {
+      console.log("Clubs:")
       setFilteredClubs(clubs)
     }
   }
@@ -57,7 +86,7 @@ function App() {
     const search = event.target.value
     if (search) {
       setFilteredClubs(clubs.filter((club) => 
-      club[7].toLowerCase().includes(search.toLowerCase())))
+      club.categories.toLowerCase().includes(search.toLowerCase())))
     } else {
       setFilteredClubs(clubs)
     }
@@ -67,17 +96,23 @@ function App() {
 
 // Activates Modal popup
 const createModal = (i) => {
-  setSelectedClub(i[6])
-  console.log("Activating Modal")
-  setDisable(true)
-  dialog.showModal();
+  console.log("Open Modal");
+  console.log(i);
+  setSelectedClubDesc(i.description);
+  setSelectedClubMail(i.emails);
+  setSelectedClubAdv(i.teachers);
+  setSelectedClubLead(i.leads);
+  setSelectedClubName(i.name);
+  setSelectedClubTags(i.categories);
+  setDisable(true);
+  setShowModal(true);
 }
 
 
 // Deactivates Modal popup
 
 const closeModal = () => {
-  dialog.close();
+  console.log("Close Modal")
 }
 
   return (
@@ -108,18 +143,28 @@ const closeModal = () => {
               // creating div for each club
               <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
               {/* rendering club objects */}
-              <h2 className="card-header">{club[2]}</h2>
-              <p className="card-leads">{club[4]}</p>
-              <p className="card-body">{club[6]}</p>
+              <h2 className="card-header">{club.name}</h2>
+              <p className="card-leads">{club.leads}</p>
+              <p className="card-body">{club.description}</p>
             </div>
           ))}
         </div>
       </div>
       {/* rendering popup */}
-      <dialog>
-        <p className="card-expand">{selectedClub}</p>
-        <span className="close" onClick={closeModal}>&times;</span>
-      </dialog>
+      { showModal && (
+        <React.Fragment>
+          <div className='modal-backdrop' onClick={() => setShowModal(false)}></div>
+          <div className="modal">
+            <h2 className="card-expand-header">{selectedClubName}</h2>
+            <p className="card-expand-leads">Lead(s): {selectedClubLead}  ({selectedClubMail})</p>
+            <p className="card-expand-leads">Faculty Advisor(s): {selectedClubAdv}</p>
+            <p className="card-expand">Description: {selectedClubDesc}</p>
+            <p className="card-expand">Categories: {selectedClubTags}</p>
+            
+            <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+          </div>
+        </React.Fragment>
+      )}
       {/* Prints category buttons to sort clubs by category */}
       <div className="Categories-bucket">
         {/* Category element header */}
