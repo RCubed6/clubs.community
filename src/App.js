@@ -2,20 +2,18 @@ import './main.css'
 import axios from "axios";
 import React from "react";
 import { render } from '@testing-library/react';
-import {GoogleSignIn} from "./googleAuthentication.js";
 
 /**
  * Entrypoint component for App 
  */
- 
+
 function App() {
 
   // Component State
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
   const [selectedClub, setSelectedClub] = React.useState(undefined)
-  const profileData = React.useState(JSON.parse(localStorage.getItem("profileData")))
-  console.log(profileData);
+  const [profileText] = React.useState(JSON.parse(localStorage.getItem("profileData"))["email"]);
 
   // const the_button = document.querySelector(".js-btn")
   // const modal = document.querySelector(".modal")
@@ -44,6 +42,7 @@ function App() {
    * Callback to handle typing (onChange) of the
    * search inpout field
    */
+
   const handleSearch = (event) => {
     const search = event.target.value
     if (search) {
@@ -75,19 +74,15 @@ const createModal = (i) => {
   dialog.showModal();
 }
 
-
 // Deactivates Modal popup
 
 const closeModal = () => {
   dialog.close();
 }
-
   return (
     <div className="">
-      <p>{profileData[0]["email"]}</p>
-      <GoogleSignIn>
-      </GoogleSignIn>
       {/* Renders search bar and clubs */}
+      <h3>Signed in as: {profileText}</h3>
       <div className='Main'>
         {/* Header */}
         <div className="grid-body">
