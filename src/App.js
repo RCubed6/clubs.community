@@ -1,11 +1,37 @@
 import './main.css'
 import axios from "axios";
 import React from "react";
-import {Club} from './Club.js';
 import { render } from '@testing-library/react';
 /**
  * Entrypoint component for App 
  */
+ const { initializeApp } = require("firebase/app");
+ const { getAuth, connectAuthEmulator, createUserWithEmailAndPassword } = require("firebase/auth");
+ //const { getAnalytics } = require("firebase/analytics");
+ // TODO: Add SDKs for Firebase products that you want to use
+ // https://firebase.google.com/docs/web/setup#available-libraries
+
+ // Your web app's Firebase configuration
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+ const firebaseConfig = {
+   apiKey: "AIzaSyDFvH4CTR0jSeblHhVZHx9CvunNxGBgfX8",
+   authDomain: "clubs-community-be504.firebaseapp.com",
+   projectId: "clubs-community-be504",
+   storageBucket: "clubs-community-be504.appspot.com",
+   messagingSenderId: "34171441682",
+   appId: "1:34171441682:web:7096c5477a95391d9d3ecb",
+   measurementId: "G-R13RYWN08G"
+ };
+
+ const app = initializeApp(firebaseConfig)
+ const auth = getAuth(app)
+ //connectAuthEmulator(auth, "http://localhost:9099")
+
+
+
+
+
+
 
 
  
@@ -14,22 +40,10 @@ function App() {
   // Component State
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
-  // popup club description
-  const [selectedClubDesc, setSelectedClubDesc] = React.useState(undefined)
-  // popup club email
-  const [selectedClubMail, setSelectedClubMail] = React.useState(undefined)
-  // popup club advisor
-  const [selectedClubAdv, setSelectedClubAdv] = React.useState(undefined)
-  // popup club leader(s)
-  const [selectedClubLead, setSelectedClubLead] = React.useState(undefined)
-  // popup club email
-  const [selectedClubName, setSelectedClubName] = React.useState(undefined)
-  // popup club advisor
-  const [selectedClubTags, setSelectedClubTags] = React.useState(undefined)
-  // modal boolean state
-  const [showModal, setShowModal] = React.useState(false)
-  
-
+  const [selectedClub, setSelectedClub] = React.useState(undefined)
+  const [authed, setAuth] = React.useState(false)
+  const [passphrase, setPassphrase] = React.useState("Clubs.Community")
+  //const authed = false
 
   // const the_button = document.querySelector(".js-btn")
   // const modal = document.querySelector(".modal")
@@ -47,23 +61,25 @@ function App() {
   React.useEffect(() => {
     axios.get("http://localhost:3001")
       .then((response) => {
-        console.log(response);
         const results = response.data.values;
         results.splice(0, 1);
-        let newResults = [];
-        for(let i = 0; i < results.length; i++){
-          let leads = results[i][4].split(", ");
-          let teachers = results[i][3].split(", ");
-          let emails = results[i][5].split(", ");
-          let newClub = new Club(results[i][2], leads, teachers, emails, results[i][6], results[i][7]);
-          newResults.push(newClub);
-        }
-        console.log("newResults");
-        console.log(newResults);
-        setClubs(newResults);
-        setFilteredClubs(newResults);
+        setClubs(results);
+        setFilteredClubs(results)
       })
   }, []);
+
+
+  function signInCheck() {
+    console.log("    ");
+    let emailValue = document.getElementById("IEmail");
+    let passValue = document.getElementById("IPassphrase");
+    if (passValue===passphrase&&emailValue.includes("nuevaschool.org")){
+      setAuth(true);
+      console.log("authed");
+    } else {
+      console.log("Not correct passphrase or email domain.");
+    }
+  }
 
   /**
    * Callback to handle typing (onChange) of the
@@ -73,24 +89,18 @@ function App() {
     const search = event.target.value
     if (search) {
       setFilteredClubs(clubs.filter((club) =>
-        club.name.toLowerCase().includes(search.toLowerCase())
-        || club.teachers.join(', ').toLowerCase().includes(search.toLowerCase())
-        || club.leads.join(', ').toLowerCase().includes(search.toLowerCase())))
-        
-      console.log("Clubs:")
-      console.log(clubs);
+        club[2].toLowerCase().includes(search.toLowerCase())
+        || club[4].toLowerCase().includes(search.toLowerCase())))
     } else {
-      console.log("Clubs:")
       setFilteredClubs(clubs)
     }
   }
-
   // {/* For category button */}
   const handleClick = (event) => {
     const search = event.target.value
     if (search) {
       setFilteredClubs(clubs.filter((club) => 
-      club.categories.toLowerCase().includes(search.toLowerCase())))
+      club[7].toLowerCase().includes(search.toLowerCase())))
     } else {
       setFilteredClubs(clubs)
     }
@@ -100,25 +110,19 @@ function App() {
 
 // Activates Modal popup
 const createModal = (i) => {
-  console.log("Open Modal");
-  console.log(i);
-  setSelectedClubDesc(i.description);
-  setSelectedClubMail(i.emails.join(', '));
-  setSelectedClubAdv(i.teachers.join(', '));
-  setSelectedClubLead(i.leads.join(', '));
-  setSelectedClubName(i.name);
-  setSelectedClubTags(i.categories);
-  setDisable(true);
-  setShowModal(true);
+  setSelectedClub(i[6])
+  console.log("Activating Modal")
+  setDisable(true)
+  dialog.showModal();
 }
 
 
 // Deactivates Modal popup
 
 const closeModal = () => {
-  console.log("Close Modal")
+  dialog.close();
 }
-
+if (authed){
   return (
     <div className="">
       {/* Renders search bar and clubs */}
@@ -147,28 +151,18 @@ const closeModal = () => {
               // creating div for each club
               <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
               {/* rendering club objects */}
-              <h2 className="card-header">{club.name}</h2>
-              <p className="card-leads">{club.leads.join(', ')}</p>
-              <p className="card-body">{club.description}</p>
+              <h2 className="card-header">{club[2]}</h2>
+              <p className="card-leads">{club[4]}</p>
+              <p className="card-body">{club[6]}</p>
             </div>
           ))}
         </div>
       </div>
       {/* rendering popup */}
-      { showModal && (
-        <React.Fragment>
-          <div className='modal-backdrop' onClick={() => setShowModal(false)}></div>
-          <div className="modal">
-            <h2 className="card-expand-header">{selectedClubName}</h2>
-            <p className="card-expand-leads">Lead(s): {selectedClubLead} ({selectedClubMail})</p>
-            <p className="card-expand-leads">Faculty Advisor(s): {selectedClubAdv}</p>
-            <p className="card-expand">Description: {selectedClubDesc}</p>
-            <p className="card-expand">Categories: {selectedClubTags}</p>
-            
-            <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-          </div>
-        </React.Fragment>
-      )}
+      <dialog>
+        <p className="card-expand">{selectedClub}</p>
+        <span className="close" onClick={closeModal}>&times;</span>
+      </dialog>
       {/* Prints category buttons to sort clubs by category */}
       <div className="Categories-bucket">
         {/* Category element header */}
@@ -225,6 +219,56 @@ const closeModal = () => {
       </div>
     </div>
   );
+} else {
+  return (
+    <div>
+      <label for="IEmail">Email:</label><br></br>
+      <input type="text" id="IEmail" name="IEmail"></input><br></br>
+      <label for="IEmail">Passphrase:</label><br></br>
+      <input type="text" id="IPassphrase" name="IPassphrase"></input><br></br><br></br>
+      <button type="button" id="SignInButton" onClick={signInCheck()}>Sign In</button>
+    </div>
+    //eval('let email = prompt("What is your email?"); let password = prompt("What is the passphrase?"); if (typeof email != "object"&&typeof password != "object"){if (email.includes("nuevaschool.org")&&password==passphrase){setAuth(true)}}')
+
+  )
+  // return (
+  //   <script type="text/javascript">
+  //   function handleCredentialResponse(response) {
+  //     console.log("Encoded JWT ID token: " + response.credential)
+  //   }
+  //   window.onload = function () {
+  //     google.accounts.id.initialize({
+  //       client_id: "441589371385-4gpjtfr1mmoocoi9eejeev5j7bq6saro.apps.googleusercontent.com",
+  //       callback: handleCredentialResponse
+  //     });
+  //     google.accounts.id.renderButton(
+  //       document.getElementById("buttonDiv"),
+  //       { theme: "outline", size: "large" }  // customization attributes
+  //     );
+  //     google.accounts.id.prompt(); // also display the One Tap dialog
+  //   }
+  //   </script>
+  // )
+  // return (
+  //   <div>
+  //     <script src="https://accounts.google.com/gsi/client" async defer></script>
+  //     <div id="g_id_onload"
+  //        data-client_id="441589371385-4gpjtfr1mmoocoi9eejeev5j7bq6saro.apps.googleusercontent.com"
+  //        data-login_uri="http://localhost:3000"
+  //        data-auto_prompt="false">
+  //     </div>
+  //     <div class="g_id_signin"
+  //        data-type="standard"
+  //        data-size="large"
+  //        data-theme="outline"
+  //        data-text="sign_in_with"
+  //        data-shape="rectangular"
+  //        data-logo_alignment="left">
+  //     </div>
+  //   </div>
+  // )
+
+}
 }
 
 export default App;
