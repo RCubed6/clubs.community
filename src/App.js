@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import {Club} from './Club.js';
 import { render } from '@testing-library/react';
+
 /**
  * Entrypoint component for App 
  */
@@ -85,6 +86,16 @@ function App() {
     }
   }
 
+  // If the browser is mobile, disable the App function
+  if (window.innerWidth < 600) {
+    return (
+      <div id="mobile">
+        <img id="wrench" src="wrench.svg" height={50}/>
+        <h1>Sorry, this app is not supported on mobile devices.</h1>
+      </div>
+    );
+  }
+
   // {/* For category button */}
   const handleClick = (event) => {
     const search = event.target.value
@@ -96,28 +107,25 @@ function App() {
     }
   }
 
-  // console.log(filteredClubs)
-
-// Activates Modal popup
-const createModal = (i) => {
-  console.log("Open Modal");
-  console.log(i);
-  setSelectedClubDesc(i.description);
-  setSelectedClubMail(i.emails.join(', '));
-  setSelectedClubAdv(i.teachers.join(', '));
-  setSelectedClubLead(i.leads.join(', '));
-  setSelectedClubName(i.name);
-  setSelectedClubTags(i.categories);
-  setDisable(true);
-  setShowModal(true);
-}
+  // Activates Modal popup
+  const createModal = (i) => {
+    console.log("Open Modal");
+    console.log(i);
+    setSelectedClubDesc(i.description);
+    setSelectedClubMail(i.emails.join(', '));
+    setSelectedClubAdv(i.teachers.join(', '));
+    setSelectedClubLead(i.leads.join(', '));
+    setSelectedClubName(i.name);
+    setSelectedClubTags(i.categories);
+    setDisable(true);
+    setShowModal(true);
+  }
 
 
-// Deactivates Modal popup
-
-const closeModal = () => {
-  console.log("Close Modal")
-}
+  // Deactivates Modal popup
+  const closeModal = () => {
+    console.log("Close Modal")
+  }
 
   return (
     <div className="">
@@ -172,7 +180,7 @@ const closeModal = () => {
       {/* Prints category buttons to sort clubs by category */}
       <div className="Categories-bucket">
         {/* Category element header */}
-        <h1>Categories:</h1>
+        <h1 id="title">Categories:</h1>
         {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
         <button className="Categories" onClick={handleClick} value={""}>
           All Categories
@@ -210,7 +218,7 @@ const closeModal = () => {
       </div>
       <div className='Categories-bucket'>
         {/* Resource element header */}
-        <h1>More Resources:</h1>
+        <h1 id="title">More Resources:</h1>
 
         {/* Each button is wrapped by an a tag which means when the button is clicked it will activate the link */}
         <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSc1Z3Uc_SYBZWU1-O1tLEPGQ9AI2EZjcHp60Vs5eL9l75X3uw/viewform">
