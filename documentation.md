@@ -5,6 +5,7 @@ Most functions are contained within three files:
 - `App.js` contains all the frontend functions.
 - `main.css` contains all css.
 - `api/server.js` contains all backend functions.
+- `Club.js` contains club class
 
 # Search Bar
 First, data is fetched from the local server on localhost:3001
@@ -33,6 +34,14 @@ handleClick is similar to handleSearch, except that it updates the search result
 ## createModal
 Activates the popup mode when you click on a club.
 
+## authentication
+Async function to get access to google spreadsheet.
+
+## app.get
+Grabbing google sheets data.
+
+## Club
+Creates a clubs class which has properties that a club would have
 
 
 
