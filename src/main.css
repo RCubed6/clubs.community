@@ -324,3 +324,8 @@ dialog::backdrop {
   padding-left: 2%;
   color: #25292F;
 }
+
+#sign_in {
+  width:200px;
+  height:100px;
+}

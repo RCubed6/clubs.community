@@ -70,6 +70,7 @@ function App() {
    * Callback to handle typing (onChange) of the
    * search inpout field
    */
+
   const handleSearch = (event) => {
     const search = event.target.value
     if (search) {
@@ -130,6 +131,7 @@ function App() {
   return (
     <div className="">
       {/* Renders search bar and clubs */}
+      <h3>Signed in as: {profileText}</h3>
       <div className='Main'>
         {/* Header */}
         <div className="grid-body">
