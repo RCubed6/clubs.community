@@ -55,7 +55,7 @@ The frontend and backend will update automatically when changes are saved. Lint 
 
 # Tests
 
-### `npm test`
+### `npx playwright test`
 
 To run the test suite.
 
