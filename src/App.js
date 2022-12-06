@@ -29,8 +29,6 @@ function App() {
   // modal boolean state
   const [showModal, setShowModal] = React.useState(false)
   
-
-
   // const the_button = document.querySelector(".js-btn")
   // const modal = document.querySelector(".modal")
   // Hook for disabling club div onclick
@@ -64,7 +62,7 @@ function App() {
   /**
    * Callback to handle typing (onChange) of the
    * search inpout field
-   *  NEW FUNCTION.
+   * Optomized function. 
    */
      const handleSearch = (event) => {
       const search = event.target.value.toLowerCase();
@@ -77,33 +75,11 @@ function App() {
         setFilteredClubs(clubs);
       }
     }
-  
-  // OLD FUNCTION. 
-  // /**
-  //  * Callback to handle typing (onChange) of the
-  //  * search inpout field
-  //  */
-  // const handleSearch = (event) => {
-  //   const search = event.target.value
-  //   if (search) {
-  //     setFilteredClubs(clubs.filter((club) =>
-  //       club.name.toLowerCase().includes(search.toLowerCase())
-  //       || club.teachers.join(', ').toLowerCase().includes(search.toLowerCase())
-  //       || club.leads.join(', ').toLowerCase().includes(search.toLowerCase())))
-        
-  //     console.log("Clubs:")
-  //     console.log(clubs);
-  //   } else {
-  //     console.log("Clubs:")
-  //     setFilteredClubs(clubs)
-  //   }
-  // }
 
-  // If the browser is mobile, disable the App function
   if (window.innerWidth < 600) {
     return (
       <div id="mobile">
-        <img id="wrench" src="wrench.svg" height={50}/>
+        <img src="wrench.svg" height={50} alt="wrench" />
         <h1>Sorry, this app is not supported on mobile devices.</h1>
       </div>
     );
@@ -122,8 +98,6 @@ function App() {
 
   // Activates Modal popup
   const createModal = (i) => {
-    console.log("Open Modal");
-    console.log(i);
     setSelectedClubDesc(i.description);
     setSelectedClubMail(i.emails.join(', '));
     setSelectedClubAdv(i.teachers.join(', '));
@@ -133,13 +107,7 @@ function App() {
     setDisable(true);
     setShowModal(true);
   }
-
-
-  // Deactivates Modal popup
-  const closeModal = () => {
-    console.log("Close Modal")
-  }
-
+  
   return (
     <div className="">
       {/* Renders search bar and clubs */}
@@ -164,15 +132,20 @@ function App() {
           <input onChange={handleSearch} type="text" placeholder="Search for clubs and people..." />
           {/* Clubs */}
           <div className="container">
-            {filteredClubs.map((club, index) => (
+            {filteredClubs.length === 0 ? (
+              <div className="loading">
+                <p>Loading clubs...</p>
+              </div>
+            ) : (
+            filteredClubs.map((club, index) => (
               // creating div for each club
-              <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
+              <div key={index} className="clubs" onClick={() => createModal(club)}>
               {/* rendering club objects */}
               <h2 className="card-header">{club.name}</h2>
               <p className="card-leads">{club.leads.join(', ')}</p>
               <p className="card-body">{club.description}</p>
             </div>
-          ))}
+          )))}
         </div>
       </div>
       {/* rendering popup */}
