@@ -9,7 +9,6 @@ import { render } from '@testing-library/react';
  */
 
 
-
 function App() {
 
   // Component State
@@ -44,27 +43,46 @@ function App() {
 
   /**
    * Get list of Clubs from API
+   * NEW FUNCTION: MADE WITH OPENAI
    */
-  React.useEffect(() => {
+   React.useEffect(() => {
     axios.get("http://localhost:3001")
       .then((response) => {
-        console.log(response);
         const results = response.data.values;
         results.splice(0, 1);
-        let newResults = [];
-        for(let i = 0; i < results.length; i++){
-          let leads = results[i][4].split(", ");
-          let teachers = results[i][3].split(", ");
-          let emails = results[i][5].split(", ");
-          let newClub = new Club(results[i][2], leads, teachers, emails, results[i][6], results[i][7]);
-          newResults.push(newClub);
-        }
-        console.log("newResults");
-        console.log(newResults);
+        let newResults = results.map((result) => {
+          let leads = result[4].split(", ");
+          let teachers = result[3].split(", ");
+          let emails = result[5].split(", ");
+          return new Club(result[2], leads, teachers, emails, result[6], result[7]);
+        });
         setClubs(newResults);
         setFilteredClubs(newResults);
-      })
+      });
   }, []);
+
+
+  // Old function for filtering clubs
+  // React.useEffect(() => {
+  //   axios.get("http://localhost:3001")
+  //     .then((response) => {
+  //       console.log(response);
+  //       const results = response.data.values;
+  //       results.splice(0, 1);
+  //       let newResults = [];
+  //       for(let i = 0; i < results.length; i++){
+  //         let leads = results[i][4].split(", ");
+  //         let teachers = results[i][3].split(", ");
+  //         let emails = results[i][5].split(", ");
+  //         let newClub = new Club(results[i][2], leads, teachers, emails, results[i][6], results[i][7]);
+  //         newResults.push(newClub);
+  //       }
+  //       console.log("newResults");
+  //       console.log(newResults);
+  //       setClubs(newResults);
+  //       setFilteredClubs(newResults);
+  //     })
+  // }, []);
 
   /**
    * Callback to handle typing (onChange) of the
