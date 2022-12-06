@@ -1,13 +1,14 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('@playwright/test')
 
-test('localhost has correct links to resources', async ({ page }) => {
-  
-    // Goes to localhost:3000/
-    await page.goto('localhost:3000/');
+test('Club cards render correctly (makes sure the backend is running)', async ({ page }) => {
+  // Navigate to the page containing the club card
+  await page.goto('http://localhost:3000/');
 
-    // TODO: add test to ensure the club card system works
+  // Use the page's built-in `waitForSelector` function to wait until the club card is visible on the page
+  await page.waitForSelector('.clubs');
 
-    
-
-});
+  // Use the `expect` function from the `@playwright/test` library to verify that the club card is rendered correctly
+  const clubCard = await page.$('.clubs');
+  expect(clubCard).toBeTruthy();
+})
   
