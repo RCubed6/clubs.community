@@ -61,48 +61,43 @@ function App() {
       });
   }, []);
 
-
-  // Old function for filtering clubs
-  // React.useEffect(() => {
-  //   axios.get("http://localhost:3001")
-  //     .then((response) => {
-  //       console.log(response);
-  //       const results = response.data.values;
-  //       results.splice(0, 1);
-  //       let newResults = [];
-  //       for(let i = 0; i < results.length; i++){
-  //         let leads = results[i][4].split(", ");
-  //         let teachers = results[i][3].split(", ");
-  //         let emails = results[i][5].split(", ");
-  //         let newClub = new Club(results[i][2], leads, teachers, emails, results[i][6], results[i][7]);
-  //         newResults.push(newClub);
-  //       }
-  //       console.log("newResults");
-  //       console.log(newResults);
-  //       setClubs(newResults);
-  //       setFilteredClubs(newResults);
-  //     })
-  // }, []);
-
   /**
    * Callback to handle typing (onChange) of the
    * search inpout field
+   *  NEW FUNCTION.
    */
-  const handleSearch = (event) => {
-    const search = event.target.value
-    if (search) {
-      setFilteredClubs(clubs.filter((club) =>
-        club.name.toLowerCase().includes(search.toLowerCase())
-        || club.teachers.join(', ').toLowerCase().includes(search.toLowerCase())
-        || club.leads.join(', ').toLowerCase().includes(search.toLowerCase())))
-        
-      console.log("Clubs:")
-      console.log(clubs);
-    } else {
-      console.log("Clubs:")
-      setFilteredClubs(clubs)
+     const handleSearch = (event) => {
+      const search = event.target.value.toLowerCase();
+      if (search) {
+        setFilteredClubs(clubs.filter((club) =>
+          club.name.toLowerCase().includes(search)
+          || club.teachers.join(', ').includes(search)
+          || club.leads.join(', ').includes(search)));
+      } else {
+        setFilteredClubs(clubs);
+      }
     }
-  }
+  
+  // OLD FUNCTION. 
+  // /**
+  //  * Callback to handle typing (onChange) of the
+  //  * search inpout field
+  //  */
+  // const handleSearch = (event) => {
+  //   const search = event.target.value
+  //   if (search) {
+  //     setFilteredClubs(clubs.filter((club) =>
+  //       club.name.toLowerCase().includes(search.toLowerCase())
+  //       || club.teachers.join(', ').toLowerCase().includes(search.toLowerCase())
+  //       || club.leads.join(', ').toLowerCase().includes(search.toLowerCase())))
+        
+  //     console.log("Clubs:")
+  //     console.log(clubs);
+  //   } else {
+  //     console.log("Clubs:")
+  //     setFilteredClubs(clubs)
+  //   }
+  // }
 
   // If the browser is mobile, disable the App function
   if (window.innerWidth < 600) {
