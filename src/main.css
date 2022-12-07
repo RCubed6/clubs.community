@@ -101,7 +101,6 @@ body {
   width: 60%;
   display: inline-block;
   height: 30px;
-  font-size: 10px; 
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 450;
   font-size: medium;
@@ -115,6 +114,22 @@ body {
   line-height: 1;
   letter-spacing: -.4px;
 }
+
+@media (max-width: 1400px) {
+  .Categories {
+    height: auto;
+    padding: 6px;
+    /* font-size: small; */
+  }
+}
+
+@media (max-width: 640px) {
+  .Categories {
+    word-wrap: break-word;
+    /* font-size: small; */
+  }
+}
+
 /* category container div */
 .Categories-bucket {
   width: 40%;
