@@ -1,7 +1,6 @@
 //requires necessary libraries
 const functions = require('firebase-functions');
 const express= require('express');
-const { auth } = require('google-auth-library');
 const { google } = require('googleapis');
 
 //uses express js

@@ -44,7 +44,7 @@ function App() {
    * NEW FUNCTION: MADE WITH OPENAI
    */
    React.useEffect(() => {
-    axios.get("http://localhost:3001")
+    axios.get("https://us-central1-clubs-community-be504.cloudfunctions.net/app")
       .then((response) => {
         const results = response.data.values;
         results.splice(0, 1);
