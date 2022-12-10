@@ -3,16 +3,29 @@ import axios from "axios";
 import React from "react";
 import {Club} from './Club.js';
 import { render } from '@testing-library/react';
+import { Navigate } from "react-router-dom";
 
 /**
  * Entrypoint component for App 
  */
 
-
+function getSessionStorageOrDefault(key, defaultValue, subcategories) {
+  const stored = sessionStorage.getItem(key);
+  if (!stored) {
+    return defaultValue;
+  }
+  if (subcategories === "email"){
+    return (JSON.parse(stored).data.email);
+  } else if (subcategories === "picture"){
+    return (JSON.parse(stored).data.picture);
+  }
+}
 
 function App() {
 
   // Component State
+  const [profileText, setProfileText] = React.useState(getSessionStorageOrDefault("profileData", "Not Signed In", "email"));
+  const [googlePicture, setGooglePicture] = React.useState(getSessionStorageOrDefault("profileData", "Not Signed In", "picture"));
   const [clubs, setClubs] = React.useState([])
   const [filteredClubs, setFilteredClubs] = React.useState([])
   // popup club description
@@ -28,9 +41,7 @@ function App() {
   // popup club advisor
   const [selectedClubTags, setSelectedClubTags] = React.useState(undefined)
   // modal boolean state
-  const [showModal, setShowModal] = React.useState(false)
-  
-
+  const [showModal, setShowModal] = React.useState(false);
 
   // const the_button = document.querySelector(".js-btn")
   // const modal = document.querySelector(".modal")
@@ -122,119 +133,133 @@ function App() {
     setShowModal(true);
   }
 
+  const handleLogout = () => {
+    window.location.reload();
+    sessionStorage.removeItem("profileData");
+    // setProfileText("Not Signed In");
+    // setGooglePicture("");
+  };
 
   // Deactivates Modal popup
   const closeModal = () => {
     console.log("Close Modal")
   }
 
-  return (
-    <div className="">
-      {/* Renders search bar and clubs */}
-      <h3>Signed in as: {profileText}</h3>
-      <div className='Main'>
-        {/* Header */}
-        <div className="grid-body">
-          <div className="grid-container">
-            <div className="box1">
-              <img id="logo" src="nueva.png"/>
-              <span>The Nueva School</span>
+  if (!sessionStorage.getItem('profileData')){
+    return (<Navigate replace to="/login" />);
+  } else {
+    return (
+      <div className="">
+        <div id="loginText">
+          <img src={googlePicture} id="googlePic"></img>
+          {profileText}
+          <button id="logoutButton" onClick={handleLogout}>Logout</button>
+        </div>
+        {/* Renders search bar and clubs*/}
+        <div className='Main'>
+          {/* Header */}
+          <div className="grid-body">
+            <div className="grid-container">
+              <div className="box1">
+                <img id="logo" src="nueva.png"/>
+                <span>The Nueva School</span>
+              </div>
+              <div className="box2">
+                <img id="club" src="club1.jpg"/>
+              </div>
+              <div className="box2">
+                <img id="club" src="club2.jpg"/>
+              </div>
+              <div className="box4"></div>
             </div>
-            <div className="box2">
-              <img id="club" src="club1.jpg"/>
-            </div>
-            <div className="box2">
-              <img id="club" src="club2.jpg"/>
-            </div>
-            <div className="box4"></div>
+        </div>
+          {/* Search bar */}
+            <input onChange={handleSearch} type="text" placeholder="Search for clubs and people..." />
+            {/* Clubs */}
+            <div className="container">
+              {filteredClubs.map((club, index) => (
+                // creating div for each club
+                <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
+                {/* rendering club objects */}
+                <h2 className="card-header">{club.name}</h2>
+                <p className="card-leads">{club.leads.join(', ')}</p>
+                <p className="card-body">{club.description}</p>
+              </div>
+            ))}
           </div>
-      </div>
-        {/* Search bar */}
-          <input onChange={handleSearch} type="text" placeholder="Search for clubs and people..." />
-          {/* Clubs */}
-          <div className="container">
-            {filteredClubs.map((club, index) => (
-              // creating div for each club
-              <div key={index} className="clubs" disabled={false} onClick={() => createModal(club)}>
-              {/* rendering club objects */}
-              <h2 className="card-header">{club.name}</h2>
-              <p className="card-leads">{club.leads.join(', ')}</p>
-              <p className="card-body">{club.description}</p>
+        </div>
+        {/* rendering popup */}
+        { showModal && (
+          <React.Fragment>
+            <div className='modal-backdrop' onClick={() => setShowModal(false)}></div>
+            <div className="modal">
+              <h2 className="card-expand-header">{selectedClubName}</h2>
+              <p className="card-expand-leads">Lead(s): {selectedClubLead} ({selectedClubMail})</p>
+              <p className="card-expand-leads">Faculty Advisor(s): {selectedClubAdv}</p>
+              <p className="card-expand">Description: {selectedClubDesc}</p>
+              <p className="card-expand">Categories: {selectedClubTags}</p>
+              
+              <span className="close" onClick={() => setShowModal(false)}>&times;</span>
             </div>
-          ))}
+          </React.Fragment>
+        )}
+        {/* Prints category buttons to sort clubs by category */}
+        <div className="Categories-bucket">
+          {/* Category element header */}
+          <h1 id="title">Categories:</h1>
+          {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
+          <button className="Categories" onClick={handleClick} value={""}>
+            All Categories
+          </button>
+          <button className="Categories" onClick={handleClick} value={"Academic"}>
+            Academic
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Activism"}>
+            Activism
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Affinity Group"}>
+            Affinity Groups
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Community Service"}>
+            Community Service
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Hobbies & Interests"}>
+            Hobbies & Interests
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Language & Culture"}>
+            Language & Culture
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Sports & Fitness"}>
+            Sports & Fitness
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"STEM"}>
+            STEM
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Visual & Performing Arts"}>
+            Visual & Performing Arts
+          </button>
+          <button className="Categories"  onClick={handleClick} value={"Writing & Literature"}>
+            Writing & Literature
+          </button>
+        </div>
+        <div className='Categories-bucket'>
+          {/* Resource element header */}
+          <h1 id="title">More Resources:</h1>
+  
+          {/* Each button is wrapped by an a tag which means when the button is clicked it will activate the link */}
+          <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSc1Z3Uc_SYBZWU1-O1tLEPGQ9AI2EZjcHp60Vs5eL9l75X3uw/viewform">
+            <button className='Categories'>Clubs Funding Application</button>
+          </a>
+          <a className='Categories' className ="card-leads" href="https://docs.google.com/document/d/1UPBjlHAmMsutsL9CanyyLAroq7_CjUQGBO-5YGY2tTI/edit">
+            <button className='Categories'>Clubs Guidlines</button>
+          </a>
+          <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSfkJI5qw_puxyJ6X2gZ7XsXda33-UFLzSG4VpsdvQfus4WU_g/viewform">
+            <button className='Categories'>Clubs Creation Application</button>
+          </a>  
         </div>
       </div>
-      {/* rendering popup */}
-      { showModal && (
-        <React.Fragment>
-          <div className='modal-backdrop' onClick={() => setShowModal(false)}></div>
-          <div className="modal">
-            <h2 className="card-expand-header">{selectedClubName}</h2>
-            <p className="card-expand-leads">Lead(s): {selectedClubLead} ({selectedClubMail})</p>
-            <p className="card-expand-leads">Faculty Advisor(s): {selectedClubAdv}</p>
-            <p className="card-expand">Description: {selectedClubDesc}</p>
-            <p className="card-expand">Categories: {selectedClubTags}</p>
-            
-            <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-          </div>
-        </React.Fragment>
-      )}
-      {/* Prints category buttons to sort clubs by category */}
-      <div className="Categories-bucket">
-        {/* Category element header */}
-        <h1 id="title">Categories:</h1>
-        {/* Buttons; when clicked they activate the constant handleClick with a given value, and the program sorts the clubs by that value*/}
-        <button className="Categories" onClick={handleClick} value={""}>
-          All Categories
-        </button>
-        <button className="Categories" onClick={handleClick} value={"Academic"}>
-          Academic
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Activism"}>
-          Activism
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Affinity Group"}>
-          Affinity Groups
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Community Service"}>
-          Community Service
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Hobbies & Interests"}>
-          Hobbies & Interests
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Language & Culture"}>
-          Language & Culture
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Sports & Fitness"}>
-          Sports & Fitness
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"STEM"}>
-          STEM
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Visual & Performing Arts"}>
-          Visual & Performing Arts
-        </button>
-        <button className="Categories"  onClick={handleClick} value={"Writing & Literature"}>
-          Writing & Literature
-        </button>
-      </div>
-      <div className='Categories-bucket'>
-        {/* Resource element header */}
-        <h1 id="title">More Resources:</h1>
-
-        {/* Each button is wrapped by an a tag which means when the button is clicked it will activate the link */}
-        <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSc1Z3Uc_SYBZWU1-O1tLEPGQ9AI2EZjcHp60Vs5eL9l75X3uw/viewform">
-          <button className='Categories'>Clubs Funding Application</button>
-        </a>
-        <a className='Categories' className ="card-leads" href="https://docs.google.com/document/d/1UPBjlHAmMsutsL9CanyyLAroq7_CjUQGBO-5YGY2tTI/edit">
-          <button className='Categories'>Clubs Guidlines</button>
-        </a>
-        <a className='Categories' className ="card-leads" href="https://docs.google.com/forms/d/e/1FAIpQLSfkJI5qw_puxyJ6X2gZ7XsXda33-UFLzSG4VpsdvQfus4WU_g/viewform">
-          <button className='Categories'>Clubs Creation Application</button>
-        </a>  
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

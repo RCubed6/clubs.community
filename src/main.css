@@ -325,7 +325,70 @@ dialog::backdrop {
   color: #25292F;
 }
 
-#sign_in {
+#loginText {
+  text-align:center;
+  text-align:left;
   width:200px;
-  height:100px;
+  display:inline;
+}
+
+#googlePic {
+  width:30px;
+  height:30px;
+  margin:10px;
+}
+
+#googleLogin {
+  margin-left:50%;
+  margin-top:30%;
+  width:50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#login {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  width: 400px;
+  height:300px;
+  background-color:#e7eaee;
+  padding:5px;
+  border-radius:25px;
+  margin: 0;
+  position: absolute;
+  left:50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#logoutButton {
+  margin-left:10px;
+  margin-right:10px;
+}
+
+h3{
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  text-align:left;
+  margin:45px;
+  font-size:25px;
+}
+
+#loginCaption {
+  font-size:10px;
+  margin-top:30%;
+  margin-left:0px;
+}
+
+#loginText {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  width: auto;
+  height:auto;
+  background-color:#e7eaee;
+  padding:5px;
+  border-radius:10px;
+  margin: 0;
+  position: absolute;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }

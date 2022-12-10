@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// create our Meal schema
-const Club = new Schema({
+// create our club schema
+const ClubSchema = Schema({
     name: {
         type: String,
         required: true,
@@ -41,4 +41,27 @@ const Club = new Schema({
 
 });
 
-module.exports = mongoose.model("Club", Club);
+// create our user schema
+const UserSchema = Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: false,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    picture: {
+        type: String,
+        required: false,
+        unique: false,
+    }
+});
+
+const Clubs = mongoose.model("Club", ClubSchema, "db");
+const Users = mongoose.model("User", UserSchema, "db");
+module.exports = {
+    Clubs, Users
+}
