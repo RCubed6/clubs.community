@@ -1,5 +1,13 @@
 ## Files:
 
+# Todo:
+
+- [x] Add authentication to ensure to ensure that only people with the correct access can view.
+- [ ] Stylize the buttons to filter for different types of clubs
+# Bug List
+- [ ] On `origin/production`, users cannot search for people
+- [ ] The card preview of clubs is centered to the entire width of the screen as opposed to the area under the search bar
+
 Most functions are contained within three files:
 
 - `App.js` contains all the frontend functions.
