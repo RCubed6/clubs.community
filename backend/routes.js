@@ -48,8 +48,7 @@ router.post("/googleloginapi", async (req, res) => {
     res.status(201)
     res.json(user)
   } else {
-    res.status(404)
-    throw new Error("Only nuevaschool.org emails are accepted");
+    res.json("Only nuevaschool.org emails are accepted");
   }
 })
 

@@ -32,9 +32,13 @@ function Login(){
       })
       .then((res) => {
         console.log(res);
-        sessionStorage.setItem("profileData", JSON.stringify(res));
-        setProfileText(res.data.email);
-        setGooglePicture(res.data.picture);
+        if (res.data === "Only nuevaschool.org emails are accepted"){
+          alert(res.data);
+        } else {
+          sessionStorage.setItem("profileData", JSON.stringify(res));
+          setProfileText(res.data.email);
+          setGooglePicture(res.data.picture);
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -76,14 +80,15 @@ function Login(){
         <h3>Sign In</h3>
         <div id="googleLogin">
             <GoogleOAuthProvider 
-                id="googleButton"
                 clientId={clientId}
                 buttonText="Sign In With Google"
             >
+            <div id="googleButton">
             <GoogleLogin
               onSuccess={handleSuccess}
               onFailure={handleFail}
             />
+            </div>
             </GoogleOAuthProvider>
           <p id="loginCaption">Access is currently restricted to those with a nuevaschool.org email address</p>
         </div>
